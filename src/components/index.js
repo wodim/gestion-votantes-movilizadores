@@ -1,0 +1,1 @@
+console.log("borrar despues cuando se creen las carpetas con los componentes")
