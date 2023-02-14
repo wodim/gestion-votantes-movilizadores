@@ -1,5 +1,6 @@
 import { Route, Routes } from "react-router-dom";
 import Login from "./pages/Login/Login";
+import MobilizerPage from "./pages/mobilizador/MobilizerPage";
 import PrivateRoutes from "./router/PrivateRoutes";
 
 function App() {
@@ -8,7 +9,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Login />} />
         <Route element={<PrivateRoutes />}>
-          <Route path="/home" element={<h1>Home</h1>} />
+          <Route path="/home" element={<MobilizerPage/>} />
         </Route>
       </Routes>
     </>
