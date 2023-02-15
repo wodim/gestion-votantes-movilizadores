@@ -3,9 +3,11 @@ import { Formik, Form, Field, ErrorMessage } from "formik";
 import { LOGIN_SCHEMA } from "../../utils/validationSchemas";
 import { handleToast } from "../../components/Notifications";
 import "./login.css";
+import { useNavigate } from "react-router-dom";
 
 const LoginForm = () => {
     console.log("LoginForm")
+    const navigate = useNavigate();
   return (
     <div className="login_container">
         <div className="login_title">
@@ -22,6 +24,7 @@ const LoginForm = () => {
           documento: "",
           password: "",
         });
+        navigate("/home");
       }}
     >
       {props => (
