@@ -8,7 +8,7 @@ const useAuth = () => {
     //const token = localStorage.getItem('token');
     //const decodedToken = token ? jwtDecode(token) : null;
     // const { state } = useContext(UserContext);
-      const user = true; //localStorage.getItem('token');
+      const user = false; //localStorage.getItem('token');
   
       return user;
   }
