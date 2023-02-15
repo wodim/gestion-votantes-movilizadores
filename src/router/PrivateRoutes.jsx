@@ -1,4 +1,4 @@
-import jwtDecode from 'jwt-decode';
+//import jwtDecode from 'jwt-decode';
 import React from 'react'
 import { Navigate, Outlet } from 'react-router-dom';
 
@@ -8,7 +8,7 @@ const useAuth = () => {
     //const token = localStorage.getItem('token');
     //const decodedToken = token ? jwtDecode(token) : null;
     // const { state } = useContext(UserContext);
-      const user = false; //localStorage.getItem('token');
+      const user = true; //localStorage.getItem('token');
   
       return user;
   }
