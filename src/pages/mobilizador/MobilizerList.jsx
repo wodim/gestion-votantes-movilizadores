@@ -1,14 +1,8 @@
-import React, { useState } from "react";
+import React from "react";
 import {
-  Button,
   Card,
   CardBody,
-  Modal,
-  ModalBody,
-  ModalFooter,
-  ModalHeader,
 } from "reactstrap";
-import MobilizerCamera from "./MobilizerCamera";
 import MobilizerModal from "./MobilizerModal";
 
 const MobilizerList = (props) => {
