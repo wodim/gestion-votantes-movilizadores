@@ -1,11 +1,8 @@
-import React from "react";
-import {
-  Card,
-  CardBody,
-} from "reactstrap";
-import MobilizerModal from "./MobilizerModal";
+import { Card, CardBody } from "reactstrap";
+import MobilizerCamera from "./MobilizerCamera";
 
-const MobilizerList = (props) => {
+const MobilizerList = () => {
+
   const data = [
     {
       name: "Franco",
@@ -46,21 +43,20 @@ const MobilizerList = (props) => {
 
   return (
     <div className="mt-5">
-      <h3 className="container">Mobilizadores</h3>
+      <h3 className="container">Movilizadores</h3>
       {data.map((item) => {
         return (
-            <Card className="cardMobilizer" key={item.id}>
-                
-              <CardBody>
-                <p>
-                  Nombre: {item.name} {item.lastName}
-                </p>
-                <p>Circuito: {item.circuito}</p>
-                <p>Documento: {item.documento}</p>
-              </CardBody>
-              <div></div>
-          <MobilizerModal/>
-            </Card>
+          <Card className="cardMobilizer" key={item.id}>
+            <CardBody>
+              <p>
+                Nombre: {item.name} {item.lastName}
+              </p>
+              <p>Circuito: {item.circuito}</p>
+              <p>Documento: {item.documento}</p>
+            </CardBody>
+            <div></div>
+            <MobilizerCamera/>
+          </Card>
         );
       })}
     </div>
