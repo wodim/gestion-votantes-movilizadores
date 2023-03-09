@@ -6,12 +6,13 @@ import jwtDecode from "jwt-decode";
 
 const MobilizerList = () => {
   const [userData, setUserData] = useState([]);
+  const [movilizador, setMovilizador] = useState([]);
 
   const usuarios = async (page) => {
     const token = localStorage.getItem("token");
     const decodedToken = token ? jwtDecode(token) : null;
     const user = decodedToken?.user_id; //localStorage.getItem('token');
-
+    setMovilizador(user);
     await axiosInstance
       .get(`users/votantes/${user}`, {
         headers: {
@@ -30,7 +31,7 @@ const MobilizerList = () => {
     usuarios();
   }, []);
 
-  console.log(userData, "users");
+  console.log(userData, "data");
 
   // const data = [
   //   {
@@ -44,21 +45,26 @@ const MobilizerList = () => {
 
   return (
     <div className="mt-5">
-      <h3 className="container">Movilizadores</h3>
+      <h3 className="container">Votantes del movilizador {movilizador} </h3>
 
       {userData.map((item) => {
         return (
-          <Card className="cardMobilizer" key={item.id}>
-            <CardBody>
-              <p>
-                Nombre: {item.nombres} {item.apellido}
-              </p>
-              <p>Circuito: {item.circuito}</p>
-              <p>Documento: {item.documento}</p>
-            </CardBody>
-            <div></div>
-            <MobilizerCamera />
-          </Card>
+          <>
+            <Card className="cardMobilizer" key={item.id}>
+              <CardBody>
+                <p>
+                  Nombre: {item.nombres} {item.apellido}
+                </p>
+                <p>Circuito: {item.circuito}</p>
+                <p>Documento: {item.documento}</p>
+              </CardBody>
+              {item.vot_status === "true" ? (
+                <p>Ya votó</p>
+              ) : (
+                <MobilizerCamera documento={item.documento} usuarios={usuarios}/>
+              )}
+            </Card>
+          </>
         );
       })}
     </div>
