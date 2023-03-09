@@ -1,59 +1,93 @@
-import React, { useRef, useState } from "react";
+import React, { useRef } from "react";
 import Webcam from "react-webcam";
-import { Button, Modal, ModalBody, ModalFooter } from "reactstrap";
+// import { Button, Modal, ModalBody, ModalFooter } from "reactstrap";
 import axios from "axios";
+// import { axiosInstance } from "../../config/axiosInstance";
 
-const videoConstraints = {
-  width: 1500,
-  height: 720,
-  facingMode: { exact: "environment" }
-};
+// const videoConstraints = {
+//   width: 1500,
+//   height: 720,
+//   facingMode: { exact: "environment" }
+// };
 
 const MobilizerCamera = (args) => {
   const webcamRef = useRef(null);
-  const [url, setUrl] = useState(null);
-  const [modalCamara, setModalCamara] = useState(false);
-  const [modal, setModal] = useState(false);
+  // const [url, setUrl] = useState(null);
+  // const [modalCamara, setModalCamara] = useState(false);
+  // const [modal, setModal] = useState(false);
 
-  const captureFoto = React.useCallback(async () => {
+  // const captureFoto = React.useCallback(async () => {
+  //   const imageSrc = webcamRef.current.getScreenshot();
+  //   setUrl(imageSrc);
+  // }, [webcamRef]);
+
+  // const imagen = webcamRef.current;
+  // const blob = fetch(imagen).then((response) => response.blob());
+  // const file = new File([blob], "Foto del movilizador", {
+  //   type: ("image/png", "image/jpeg", "image/svg", "image/webp"),
+  //   lastModified: Date.now(),
+  // });
+
+  // const openModalCamara = () => {
+  //   setModalCamara(true);
+  // };
+  // const closeModalCamara = () => {
+  //   setModalCamara(false);
+  // };
+
+  // const openModal = () => {
+  //   setModal(true);
+  // };
+  // const closeModal = () => {
+  //   setModal(false);
+
+  //   const formData = new FormData();
+  //   formData.append("file", file);
+  //   const config = {
+  //     headers: { "content-type": "multipart/form-data" },
+  //   };
+  //   axiosInstance
+  //     .post(url, formData, config)
+  //     .then(response => response)
+  //     .catch((error) => alert(error));
+  // };
+
+  const capture = async () => {
     const imageSrc = webcamRef.current.getScreenshot();
-    setUrl(imageSrc);
-  }, [webcamRef]);
-
-  const imagen = webcamRef.current;
-  const blob = fetch(imagen).then((response) => response.blob());
-  const file = new File([blob], "Foto del movilizador", {
-    type: ("image/png", "image/jpeg", "image/svg", "image/webp"),
-    lastModified: Date.now(),
-  });
-
-  const openModalCamara = () => {
-    setModalCamara(true);
-  };
-  const closeModalCamara = () => {
-    setModalCamara(false);
+    try {
+      const formData = new FormData();
+      formData.append('image', dataURItoBlob(imageSrc));
+      const res = await axios.post('https://backgestionvotantes.com.ar/api/upload/20202020/image/11123123', formData, {
+        headers: {
+          'Content-Type': 'multipart/form-data'
+        }
+      });
+      console.log(res.data);
+    } catch (error) {
+      console.log(error);
+    }
   };
 
-  const openModal = () => {
-    setModal(true);
-  };
-  const closeModal = () => {
-    setModal(false);
+  const dataURItoBlob = (dataURI) => {
+    const byteString = atob(dataURI.split(',')[1]);
+    const ab = new ArrayBuffer(byteString.length);
+    const ia = new Uint8Array(ab);
+    for (let i = 0; i < byteString.length; i++) {
+      ia[i] = byteString.charCodeAt(i);
+    }
+    return new Blob([ab], { type: 'image/jpeg' });
+  }
 
-    const formData = new FormData();
-    formData.append("file", file);
-    const config = {
-      headers: { "content-type": "multipart/form-data" },
-    };
-    axios
-      .post(url, formData, config)
-      .then(response => response)
-      .catch((error) => alert(error));
-  };
 
   return (
     <>
-      <Button
+     <Webcam
+        audio={false}
+        ref={webcamRef}
+        screenshotFormat="image/jpeg"
+      />
+      <button onClick={capture}>Capture photo</button>
+      {/* <Button
         color="dark"
         size="sm"
         onClick={openModalCamara}
@@ -108,7 +142,7 @@ const MobilizerCamera = (args) => {
       )}
 
       {/* MODAL ACEPTACION */}
-
+{/* 
       {modal && (
         <Modal isOpen={modal} {...args}>
           <ModalBody>
@@ -138,7 +172,7 @@ const MobilizerCamera = (args) => {
             </Button>
           </ModalFooter>
         </Modal>
-      )}
+      )}  */}
     </>
   );
 };
