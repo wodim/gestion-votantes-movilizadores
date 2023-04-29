@@ -66,7 +66,7 @@ const MobilizerList = () => {
       <div className="container-fluid text-center mt-4">
         <div className="row">
           <div className="col-lg-4 col-md-6 mb-3">
-            <div className="titleMovilizador">MOVILIZADOR</div>
+            <div className="titleMovilizador">MOVILIZADOR </div>
             <div className="table-responsive">
               <table className="table table-bordered border border-dark table__border">
                 <thead className="border border-dark">
