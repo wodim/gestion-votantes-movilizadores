@@ -81,7 +81,7 @@ const MobilizerCamera = ({ documento, usuarios }) => {
       </Button>
 
       <Modal isOpen={modal} toggle={toggle}>
-        <ModalHeader toggle={toggle}>Modal title</ModalHeader>
+        <ModalHeader toggle={toggle}>Tomar Foto</ModalHeader>
         <ModalBody>
           <div className="container">
             <Webcam

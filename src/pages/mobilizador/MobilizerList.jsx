@@ -65,7 +65,7 @@ const MobilizerList = () => {
     <>
       <div className="container text-center mt-4">
         <div className="row">
-          <div className="col-4">
+          <div className="col-lg-4 col-md-6 mb-3">
             <div className="titleMovilizador">MOVILIZADOR</div>
             <div className="table-responsive">
               <table className="table table-bordered border border-dark table__border">
@@ -89,11 +89,11 @@ const MobilizerList = () => {
             </div>
           </div>
 
-          <div className="col-10 d-flex">
+          <div className="col">
             {userData.map((item) => {
               return (
                 <>
-                  <div className="col">
+                  <div className="col-lg-4 col-md-6 mb-3">
                     <Card className="cardMobilizer" key={item.id}>
                       <CardBody>
                         <p>
