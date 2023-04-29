@@ -5,11 +5,11 @@ import { axiosInstance } from "../../config/axiosInstance";
 import jwtDecode from "jwt-decode";
 import Swal from "sweetalert2";
 
-// const videoConstraints = {
-//   width: 1500,
-//   height: 720,
-//   facingMode: { exact: "environment" }
-// };
+const videoConstraints = {
+  width: 1500,
+  height: 720,
+  facingMode: { exact: "environment" }
+};
 
 const MobilizerCamera = ({ documento, usuarios }) => {
   const webcamRef = useRef(null);
@@ -88,6 +88,8 @@ const MobilizerCamera = ({ documento, usuarios }) => {
               audio={false}
               ref={webcamRef}
               screenshotFormat="image/jpeg"
+              videoConstraints={videoConstraints}
+
             />
           </div>
           <Button color="success"
