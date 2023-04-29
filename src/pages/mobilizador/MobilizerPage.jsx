@@ -12,12 +12,10 @@ const MobilizerPage = () => {
   };
   return (
     <>
+      <MobilizerList />
       <div className="container">
         <div className="row">
           <div className="col-12">
-            <MobilizerList />
-          </div>
-          <div className="col">
             <Button className="btn btn-danger mt-5" onClick={logout}>
               Cerrar Sesión
             </Button>

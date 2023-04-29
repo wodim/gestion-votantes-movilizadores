@@ -6,9 +6,7 @@ import jwtDecode from "jwt-decode";
 import Swal from "sweetalert2";
 
 const videoConstraints = {
-  width: 1500,
-  height: 720,
-  facingMode: { exact: "environment" }
+  facingMode: { exact: "environment" },
 };
 
 const MobilizerCamera = ({ documento, usuarios }) => {
@@ -71,7 +69,7 @@ const MobilizerCamera = ({ documento, usuarios }) => {
     <>
       <Button
         color="success"
-         style={{
+        style={{
           height: "50px",
           fontSize: "30px",
         }}
@@ -89,15 +87,20 @@ const MobilizerCamera = ({ documento, usuarios }) => {
               ref={webcamRef}
               screenshotFormat="image/jpeg"
               videoConstraints={videoConstraints}
-
             />
           </div>
-          <Button color="success"
-         style={{
-          height: "50px",
-          fontSize: "25px",
-          textAlign: "center",
-        }} onClick={capture}> Tomar foto </Button>
+          <Button
+            color="success"
+            style={{
+              height: "50px",
+              fontSize: "25px",
+              textAlign: "center",
+            }}
+            onClick={capture}
+          >
+            {" "}
+            Tomar foto{" "}
+          </Button>
         </ModalBody>
       </Modal>
     </>

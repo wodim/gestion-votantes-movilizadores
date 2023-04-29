@@ -63,7 +63,7 @@ const MobilizerList = () => {
 
   return (
     <>
-      <div className="container text-center mt-4">
+      <div className="container-fluid text-center mt-4">
         <div className="row">
           <div className="col-lg-4 col-md-6 mb-3">
             <div className="titleMovilizador">MOVILIZADOR</div>
@@ -89,7 +89,7 @@ const MobilizerList = () => {
             </div>
           </div>
 
-          <div className="col">
+          <div className="col-12 d-flex flex-wrap">
             {userData.map((item) => {
               return (
                 <>
