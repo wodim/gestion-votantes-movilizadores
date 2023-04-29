@@ -17,9 +17,7 @@ const MobilizerCamera = ({ documento, usuarios }) => {
 
   const toggle = () => setModal(!modal);
 
-
   const capture = async () => {
-    console.log(documento);
     const imageSrc = webcamRef.current.getScreenshot();
     const token = localStorage.getItem("token");
     const decodedToken = token ? jwtDecode(token) : null;
@@ -71,20 +69,34 @@ const MobilizerCamera = ({ documento, usuarios }) => {
 
   return (
     <>
-      <Button color="dark" size="sm" onClick={toggle}>
-        Sacar foto
+      <Button
+        color="success"
+         style={{
+          height: "50px",
+          fontSize: "30px",
+        }}
+        onClick={toggle}
+      >
+        VOTÓ
       </Button>
 
       <Modal isOpen={modal} toggle={toggle}>
         <ModalHeader toggle={toggle}>Modal title</ModalHeader>
         <ModalBody>
           <div className="container">
-          <Webcam audio={false} ref={webcamRef} screenshotFormat="image/jpeg" />
+            <Webcam
+              audio={false}
+              ref={webcamRef}
+              screenshotFormat="image/jpeg"
+            />
           </div>
-          <button onClick={capture}> Tomar foto </button>
+          <Button color="success"
+         style={{
+          height: "50px",
+          fontSize: "25px",
+          textAlign: "center",
+        }} onClick={capture}> Tomar foto </Button>
         </ModalBody>
-
-
       </Modal>
     </>
   );
