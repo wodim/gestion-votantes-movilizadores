@@ -35,7 +35,6 @@ const LoginForm = () => {
               });
               navigate("/home");
             } catch (error) {
-              console.log(error);
               handleToast("error", error.response.data.msg);
               setIsLoading(false);
             }
