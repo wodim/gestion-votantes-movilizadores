@@ -38,7 +38,6 @@ const MobilizerList = () => {
         },
       })
       .then((response) => {
-        console.log(response.data);
         setMovilizador(response.data);
       })
       .catch((error) => {
@@ -76,14 +75,14 @@ const MobilizerList = () => {
                   <tr className="datosMovilizador">
                     {movilizador.escuela} Escuela
                   </tr>
-                  <tr>
+                  {/* <tr>
                     <Button>
                       <MobilizerCamera
                         documento={movilizador.documento}
                         usuarios={usuarios}
                       />
                     </Button>
-                  </tr>
+                  </tr> */}
                 </thead>
               </table>
             </div>
