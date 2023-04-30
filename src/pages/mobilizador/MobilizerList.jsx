@@ -4,6 +4,7 @@ import MobilizerCamera from "./MobilizerCamera";
 import { axiosInstance } from "../../config/axiosInstance";
 import jwtDecode from "jwt-decode";
 import "./Mobilizer.css";
+import Footer from "../../components/Footer/Footer";
 
 const MobilizerList = () => {
   const [userData, setUserData] = useState([]);
@@ -141,6 +142,7 @@ const MobilizerList = () => {
             })}
           </div>
         </div>
+     
       </div>
     </>
   );
