@@ -88,6 +88,7 @@ const MobilizerCamera = ({ documento, usuarios }) => {
               height: "50px",
               fontSize: "25px",
               textAlign: "center",
+              marginBottom:"5px"
             }}
             onClick={capture}
           >
