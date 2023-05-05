@@ -84,6 +84,7 @@ const MobilizerCamera = ({ documento, usuarios }) => {
         <Button
             color="success"
             style={{
+              width:"100%",
               height: "50px",
               fontSize: "25px",
               textAlign: "center",
