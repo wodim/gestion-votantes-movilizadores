@@ -81,15 +81,7 @@ const MobilizerCamera = ({ documento, usuarios }) => {
       <Modal isOpen={modal} toggle={toggle}>
         <ModalHeader toggle={toggle}>Tomar Foto</ModalHeader>
         <ModalBody>
-          <div className="container">
-            <Webcam
-              audio={false}
-              ref={webcamRef}
-              screenshotFormat="image/jpeg"
-              videoConstraints={videoConstraints}
-            />
-          </div>
-          <Button
+        <Button
             color="success"
             style={{
               height: "50px",
@@ -101,6 +93,15 @@ const MobilizerCamera = ({ documento, usuarios }) => {
             {" "}
             Tomar foto{" "}
           </Button>
+          <div className="container">
+            <Webcam
+              audio={false}
+              ref={webcamRef}
+              screenshotFormat="image/jpeg"
+              videoConstraints={videoConstraints}
+            />
+          </div>
+
         </ModalBody>
       </Modal>
     </>
