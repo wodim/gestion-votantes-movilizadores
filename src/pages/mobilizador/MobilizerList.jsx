@@ -70,7 +70,7 @@ const MobilizerList = () => {
             <div className="table-responsive">
               <table className="table table-bordered border border-dark table__border">
                 <thead className="border border-dark">
-                  <tr className="datosMovilizador">{movilizador.nombres}</tr>
+                  <tr className="datosMovilizador">{movilizador.nombres} {movilizador.apellido} </tr>
                   <tr className="datosMovilizador">{movilizador.documento}</tr>
                   <tr className="datosMovilizador">{movilizador.mesa} Mesa</tr>
                   <tr className="datosMovilizador">

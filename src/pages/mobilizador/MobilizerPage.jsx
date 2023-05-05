@@ -2,7 +2,6 @@ import { Button } from "reactstrap";
 import "./Mobilizer.css";
 import MobilizerList from "./MobilizerList";
 import { useNavigate } from "react-router-dom";
-import Footer from "../../components/Footer/Footer";
 
 const MobilizerPage = () => {
   const navigate = useNavigate();
@@ -23,7 +22,6 @@ const MobilizerPage = () => {
           </div>
         </div>
       </div>
-        <Footer />
     </>
   );
 };
