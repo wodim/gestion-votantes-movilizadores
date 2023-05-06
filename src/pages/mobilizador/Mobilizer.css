@@ -39,3 +39,8 @@
     margin: 0rem 0rem 0rem 1rem;
     text-align: center;
 }
+
+.button__camera:disabled {
+    background-color: grey !important;
+    cursor: not-allowed !important;
+}

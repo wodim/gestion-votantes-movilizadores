@@ -61,6 +61,8 @@ const MobilizerList = () => {
   //   },
   // ];
 
+  console.log(movilizador)
+
   return (
     <>
       <div className="container-fluid text-center mt-4">
@@ -76,14 +78,33 @@ const MobilizerList = () => {
                   <tr className="datosMovilizador">
                     {movilizador.escuela} Escuela
                   </tr>
-                  {/* <tr>
-                    <Button>
-                      <MobilizerCamera
-                        documento={movilizador.documento}
-                        usuarios={usuarios}
-                      />
-                    </Button>
-                  </tr> */}
+                  <tr>
+                    {
+                      movilizador.voto === 1 ? (
+                        <>
+                          <div
+                            style={{
+                              backgroundColor: "blue",
+                              color: "white",
+                              textAlign: "center",
+                              height: "50px",
+                              fontSize: "30px",
+                            }}
+                          >
+                            <p>CONFIRMADO</p>
+                          </div>
+                        </>
+                      ) : (
+                        <Button style={{width:"100%"}}>
+                        <MobilizerCamera
+                          documento={movilizador.documento}
+                          usuarios={usuarios}
+                          usuarioMovilizador={usuarioMovilizador}
+                        />
+                      </Button>
+                      )
+                    }
+                  </tr>
                 </thead>
               </table>
             </div>

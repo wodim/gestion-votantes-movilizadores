@@ -4,14 +4,16 @@ import { Button, Modal, ModalBody, ModalHeader } from "reactstrap";
 import { axiosInstance } from "../../config/axiosInstance";
 import jwtDecode from "jwt-decode";
 import Swal from "sweetalert2";
+import axios from "axios";
 
 const videoConstraints = {
   facingMode: { exact: "environment" },
 };
 
-const MobilizerCamera = ({ documento, usuarios }) => {
+const MobilizerCamera = ({ documento, usuarios, usuarioMovilizador }) => {
   const webcamRef = useRef(null);
   const [modal, setModal] = useState(false);
+  const [disabledButton, setDisabledButton] = useState(false)
 
   const toggle = () => setModal(!modal);
 
@@ -20,8 +22,29 @@ const MobilizerCamera = ({ documento, usuarios }) => {
     const token = localStorage.getItem("token");
     const decodedToken = token ? jwtDecode(token) : null;
     const user = decodedToken?.user_id; //localStorage.getItem('token');
+    setDisabledButton(true)
 
     try {
+      if(user === documento) {
+        const response = await axiosInstance.post(`/users/movilizador/voto/${documento}`, null, {
+          headers: {
+            "Content-Type": "multipart/form-data",
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
+          }
+        })
+        if(response.status === 200) {
+          Swal.fire({
+            icon: "success",
+            title: "Voto guardado",
+            showConfirmButton: false,
+            timer: 1500,
+          });
+        }
+        setDisabledButton(false)
+        usuarioMovilizador()
+        return
+
+      }
       const formData = new FormData();
       formData.append("image", dataURItoBlob(imageSrc));
       const res = await axiosInstance.post(
@@ -42,6 +65,7 @@ const MobilizerCamera = ({ documento, usuarios }) => {
           timer: 1500,
         });
         usuarios();
+        setDisabledButton(false)
       } else {
         Swal.fire({
           icon: "error",
@@ -51,6 +75,7 @@ const MobilizerCamera = ({ documento, usuarios }) => {
         });
       }
     } catch (error) {
+      setDisabledButton(false)
       console.log(error.message);
     }
   };
@@ -90,7 +115,9 @@ const MobilizerCamera = ({ documento, usuarios }) => {
               textAlign: "center",
               marginBottom:"5px"
             }}
+            className="button__camera"
             onClick={capture}
+            disabled={disabledButton}
           >
             {" "}
             Tomar foto{" "}
