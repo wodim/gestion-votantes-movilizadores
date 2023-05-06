@@ -97,6 +97,7 @@ const MobilizerList = () => {
                       ) : (
                         <Button style={{width:"100%"}}>
                         <MobilizerCamera
+                          isMovilizador={true}
                           documento={movilizador.documento}
                           usuarios={usuarios}
                           usuarioMovilizador={usuarioMovilizador}

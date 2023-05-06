@@ -10,7 +10,7 @@ const videoConstraints = {
   facingMode: { exact: "environment" },
 };
 
-const MobilizerCamera = ({ documento, usuarios, usuarioMovilizador }) => {
+const MobilizerCamera = ({ isMovilizador, documento, usuarios, usuarioMovilizador }) => {
   const webcamRef = useRef(null);
   const [modal, setModal] = useState(false);
   const [disabledButton, setDisabledButton] = useState(false)
@@ -97,6 +97,7 @@ const MobilizerCamera = ({ documento, usuarios, usuarioMovilizador }) => {
         style={{
           height: "50px",
           fontSize: "30px",
+          display: isMovilizador ? "block" : "none",
         }}
         onClick={toggle}
       >
@@ -113,11 +114,12 @@ const MobilizerCamera = ({ documento, usuarios, usuarioMovilizador }) => {
               height: "50px",
               fontSize: "25px",
               textAlign: "center",
-              marginBottom:"5px"
+              marginBottom:"5px",
+             
             }}
             className="button__camera"
             onClick={capture}
-            disabled={disabledButton}
+            // disabled={isMovilizador ? false : true}
           >
             {" "}
             Tomar foto{" "}
