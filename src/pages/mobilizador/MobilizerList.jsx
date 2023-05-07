@@ -111,7 +111,7 @@ const MobilizerList = () => {
             </div>
           </div>
 
-          <div className="col-12 d-flex flex-wrap">
+          <div className="col-12 d-flex flex-wrap justify-content-center">
             {userData.map((item) => {
               return (
                 <>
