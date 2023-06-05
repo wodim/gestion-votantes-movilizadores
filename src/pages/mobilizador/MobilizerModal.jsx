@@ -63,6 +63,7 @@ const guardarFoto = async () => {
       }
     } catch (error) {
       setDisabledButton(false)
+      togglePreview()
       console.log(error.message);
     }
 }
