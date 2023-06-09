@@ -4,22 +4,34 @@ import Swal from "sweetalert2";
 import { axiosInstance } from "../../config/axiosInstance";
 import jwtDecode from "jwt-decode";
 
-  const MobilizerModal = ({togglePreview, modalCamara, imagge, toggle, documento, usuarios, usuarioMovilizador, setDisabledButton}) => {
-
-
-const guardarFoto = async () => {
-  const token = localStorage.getItem("token");
-  const decodedToken = token ? jwtDecode(token) : null;
-  const user = decodedToken?.user_id; //localStorage.getItem('token');
- try {
-      if(user === documento) {
-        const response = await axiosInstance.post(`/users/movilizador/voto/${documento}`, null, {
-          headers: {
-            "Content-Type": "multipart/form-data",
-            Authorization: `Bearer ${localStorage.getItem("token")}`,
+const MobilizerModal = ({
+  togglePreview,
+  modalCamara,
+  imagge,
+  toggle,
+  documento,
+  usuarios,
+  usuarioMovilizador,
+  setDisabledButton,
+  isMovilizador,
+}) => {
+  const guardarFoto = async () => {
+    const token = localStorage.getItem("token");
+    const decodedToken = token ? jwtDecode(token) : null;
+    const user = decodedToken?.user_id; //localStorage.getItem('token');
+    try {
+      if (user === documento) {
+        const response = await axiosInstance.post(
+          `/users/movilizador/voto/${documento}`,
+          null,
+          {
+            headers: {
+              "Content-Type": "multipart/form-data",
+              Authorization: `Bearer ${localStorage.getItem("token")}`,
+            },
           }
-        })
-        if(response.status === 200) {
+        );
+        if (response.status === 200) {
           Swal.fire({
             icon: "success",
             title: "Voto guardado",
@@ -27,13 +39,42 @@ const guardarFoto = async () => {
             timer: 1500,
           });
         }
-        setDisabledButton(false)
-        usuarioMovilizador()
-        return
-
+        setDisabledButton(false);
+        usuarioMovilizador();
+        return;
       }
       const formData = new FormData();
       formData.append("image", dataURItoBlob(imagge));
+      if(isMovilizador){
+        const res = await axiosInstance.post(
+          `/upload/movilizador/${documento}`,
+          formData,
+          {
+            headers: {
+              "Content-Type": "multipart/form-data",
+              Authorization: `Bearer ${localStorage.getItem("token")}`,
+            },
+          }
+        );
+        if (res.status === 200) {
+          Swal.fire({
+            icon: "success",
+            title: "Foto guardada",
+            showConfirmButton: false,
+            timer: 1500,
+          });
+          usuarios();
+          setDisabledButton(false);
+        } else {
+          Swal.fire({
+            icon: "error",
+            title: "Error al guardar la foto",
+            showConfirmButton: false,
+            timer: 1500,
+          });
+        }
+        return
+      }
       const res = await axiosInstance.post(
         `/upload/${user}/image/${documento}`,
         formData,
@@ -52,7 +93,7 @@ const guardarFoto = async () => {
           timer: 1500,
         });
         usuarios();
-        setDisabledButton(false)
+        setDisabledButton(false);
       } else {
         Swal.fire({
           icon: "error",
@@ -62,24 +103,21 @@ const guardarFoto = async () => {
         });
       }
     } catch (error) {
-      setDisabledButton(false)
-      togglePreview()
+      setDisabledButton(false);
+      togglePreview();
       console.log(error.message);
     }
-}
+  };
 
-
-
-
-const dataURItoBlob = (dataURI) => {
-  const byteString = atob(dataURI.split(",")[1]);
-  const ab = new ArrayBuffer(byteString.length);
-  const ia = new Uint8Array(ab);
-  for (let i = 0; i < byteString.length; i++) {
-    ia[i] = byteString.charCodeAt(i);
-  }
-  return new Blob([ab], { type: "image/jpeg" });
-};
+  const dataURItoBlob = (dataURI) => {
+    const byteString = atob(dataURI.split(",")[1]);
+    const ab = new ArrayBuffer(byteString.length);
+    const ia = new Uint8Array(ab);
+    for (let i = 0; i < byteString.length; i++) {
+      ia[i] = byteString.charCodeAt(i);
+    }
+    return new Blob([ab], { type: "image/jpeg" });
+  };
 
   return (
     <>
@@ -91,8 +129,8 @@ const dataURItoBlob = (dataURI) => {
       </Button> */}
       <Modal isOpen={modalCamara} toggle={togglePreview}>
         <ModalBody>
-        <img src={imagge} alt="" width={"470px"} />
-           {/* <p>
+          <img src={imagge} alt="" width={"470px"} />
+          {/* <p>
             ACEPTA GUARDAR LA FOTO ?
            </p> */}
         </ModalBody>
@@ -100,11 +138,13 @@ const dataURItoBlob = (dataURI) => {
           <Button color="primary" onClick={guardarFoto}>
             Guardar
           </Button>
-          <Button color="danger" onClick={() => {
-            togglePreview()
-            toggle()
-            }
-          }>
+          <Button
+            color="danger"
+            onClick={() => {
+              togglePreview();
+              toggle();
+            }}
+          >
             Cancelar
           </Button>
         </ModalFooter>
