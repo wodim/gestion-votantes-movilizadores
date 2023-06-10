@@ -19,8 +19,6 @@ const MobilizerModal = ({
     const token = localStorage.getItem("token");
     const decodedToken = token ? jwtDecode(token) : null;
     const user = decodedToken?.user_id; //localStorage.getItem('token');
-    console.log(user);
-    console.log(isMovilizador);
     try {
       // if (user === documento) {
       //   const response = await axiosInstance.post(
