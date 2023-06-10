@@ -80,7 +80,7 @@ const MobilizerCamera = ({ isMovilizador, documento, usuarios, usuarioMovilizado
           <img src={image} alt="" width={"470px"} />
         </ModalFooter> */}
       </Modal>
-      <MobilizerModal togglePreview={togglePreview} modalCamara={modalCamara} imagge={image} toggle={toggle} documento={documento} usuarios={usuarios} usuarioMovilizador={usuarioMovilizador} setDisabledButton={setDisabledButton} />
+      <MobilizerModal togglePreview={togglePreview} modalCamara={modalCamara} imagge={image} toggle={toggle} documento={documento} usuarios={usuarios} usuarioMovilizador={usuarioMovilizador} setDisabledButton={setDisabledButton} isMovilizador={isMovilizador} />
     </>
   );
 };

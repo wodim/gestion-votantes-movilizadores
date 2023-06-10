@@ -19,35 +19,37 @@ const MobilizerModal = ({
     const token = localStorage.getItem("token");
     const decodedToken = token ? jwtDecode(token) : null;
     const user = decodedToken?.user_id; //localStorage.getItem('token');
+    console.log(user);
+    console.log(isMovilizador);
     try {
-      if (user === documento) {
-        const response = await axiosInstance.post(
-          `/users/movilizador/voto/${documento}`,
-          null,
-          {
-            headers: {
-              "Content-Type": "multipart/form-data",
-              Authorization: `Bearer ${localStorage.getItem("token")}`,
-            },
-          }
-        );
-        if (response.status === 200) {
-          Swal.fire({
-            icon: "success",
-            title: "Voto guardado",
-            showConfirmButton: false,
-            timer: 1500,
-          });
-        }
-        setDisabledButton(false);
-        usuarioMovilizador();
-        return;
-      }
+      // if (user === documento) {
+      //   const response = await axiosInstance.post(
+      //     `/users/movilizador/voto/${documento}`,
+      //     null,
+      //     {
+      //       headers: {
+      //         "Content-Type": "multipart/form-data",
+      //         Authorization: `Bearer ${localStorage.getItem("token")}`,
+      //       },
+      //     }
+      //   );
+      //   if (response.status === 200) {
+      //     Swal.fire({
+      //       icon: "success",
+      //       title: "Voto guardado",
+      //       showConfirmButton: false,
+      //       timer: 1500,
+      //     });
+      //   }
+      //   setDisabledButton(false);
+      //   usuarioMovilizador();
+      //   return;
+      // }
       const formData = new FormData();
       formData.append("image", dataURItoBlob(imagge));
       if(isMovilizador){
         const res = await axiosInstance.post(
-          `/upload/movilizador/${documento}`,
+          `/upload/movilizador/${user}`,
           formData,
           {
             headers: {
