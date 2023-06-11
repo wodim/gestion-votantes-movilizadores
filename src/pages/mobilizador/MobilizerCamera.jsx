@@ -24,7 +24,6 @@ const MobilizerCamera = ({ isMovilizador, documento, usuarios, usuarioMovilizado
   const capture = async () => {
     const imageSrc = webcamRef.current.getScreenshot();
     setDisabledButton(true)
-    console.log(webcamRef.current)
     setImage(imageSrc)
     togglePreview()
     toggle()

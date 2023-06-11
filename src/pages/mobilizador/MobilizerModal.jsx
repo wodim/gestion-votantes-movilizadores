@@ -65,6 +65,8 @@ const MobilizerModal = ({
           });
           usuarios();
           setDisabledButton(false);
+          usuarioMovilizador();
+          toggle()
         } else {
           Swal.fire({
             icon: "error",
