@@ -7,7 +7,7 @@ import Swal from "sweetalert2";
 import MobilizerModal from "./MobilizerModal";
 
 const videoConstraints = {
-  facingMode: "user",
+  facingMode: { exact: "environment" },
 };
 
 const MobilizerCamera = ({ isMovilizador, documento, usuarios, usuarioMovilizador }) => {
