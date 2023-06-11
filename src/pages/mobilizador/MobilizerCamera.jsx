@@ -69,7 +69,7 @@ const MobilizerCamera = ({ isMovilizador, documento, usuarios, usuarioMovilizado
               ref={webcamRef}
               screenshotFormat="image/jpeg"
               videoConstraints={videoConstraints}
-              mirrored={true}
+              mirrored={false}
               width={"500px"}
             />
           </div>
