@@ -14,7 +14,7 @@ const LoginForm = () => {
 
   return (
     <div className="login_container">
-      <div className="formLogin">
+      {/* <div className="formLogin">
         <div className="login_title">
           <h4>Iniciar Sesión</h4>
         </div>
@@ -79,7 +79,7 @@ const LoginForm = () => {
             </Form>
           )}
         </Formik>
-      </div>
+      </div> */}
     </div>
   );
 };
