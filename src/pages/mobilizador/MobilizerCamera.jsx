@@ -7,7 +7,7 @@ import Swal from "sweetalert2";
 import MobilizerModal from "./MobilizerModal";
 
 const videoConstraints = {
-  facingMode: { exact: "environment" },
+  facingMode: "user",
 };
 
 const MobilizerCamera = ({ isMovilizador, documento, usuarios, usuarioMovilizador }) => {
@@ -24,7 +24,6 @@ const MobilizerCamera = ({ isMovilizador, documento, usuarios, usuarioMovilizado
   const capture = async () => {
     const imageSrc = webcamRef.current.getScreenshot();
     setDisabledButton(true)
-    console.log(webcamRef.current)
     setImage(imageSrc)
     togglePreview()
     toggle()

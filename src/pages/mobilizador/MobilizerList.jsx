@@ -61,7 +61,6 @@ const MobilizerList = () => {
   //   },
   // ];
 
-  console.log(movilizador)
 
   return (
     <>
